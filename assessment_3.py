@@ -73,8 +73,8 @@ print(rem)
 
 #---------------------------------------------------------------------------------------
 # 3.10 - Join a list of words into a single string with - between them.
-
-food=["mango ","apple","banana","kiwi"]
+                                        
+food=["apple","mango","banana","kiwi"]
 
 list="-".join(food)
 print(list)

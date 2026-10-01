@@ -1,0 +1,106 @@
+CREATE DATABASE E_COMMERCE;
+USE E_COMMERCE;      
+
+CREATE TABLE CUSTOMBERS(ID INT ,NAME VARCHAR(50),CITY VARCHAR(50));
+CREATE TABLE ORDERS(ORDER_ID INT,ID INT ,ORDER_DATE DATE,AMOUNT float);
+CREATE TABLE PRODUCTS(PRODUCT_ID INT ,PRODUCT_NAME VARCHAR(50),PRICE FLOAT);
+CREATE TABLE ORDER_ITEMS(ORDER_ID INT,PRODUCT_ID INT,OUANTITY INT);
+
+INSERT INTO CUSTOMBERS(ID,NAME,CITY) VALUE
+(1,'NELSON','SURAT'),
+(2,'JON SNOW','VADODARA'),
+(3,'TOM','AHMEDABAD'),
+(4,'SCOUT','MUMBAI'),
+(5,'MORTAL','PUNE');
+
+INSERT INTO ORDERS(ORDER_ID,ID,ORDER_DATE,AMOUNT)VALUE 
+(101,1,'2026-01-10',15000),
+(102, 2, '2026-01-15', 22000),
+(103, 1, '2026-02-05', 18000),
+(104, 3, '2026-02-12', 35000),
+(105, 4, '2026-02-20', 12000),
+(106, 5, '2026-03-01', 28000),
+(107, 2, '2026-03-10', 31000),
+(109, 3, '2026-04-05', 16000),
+(110, 4, '2026-04-18', 25000),
+(111, 1, '2026-05-02', 20000);
+
+INSERT INTO PRODUCTS(PRODUCT_ID,PRODUCT_NAME,PRICE)VALUE 
+(201, 'Laptop', 55000),
+(202, 'Mouse', 800),
+(203, 'Keyboard', 1500),
+(204, 'Monitor', 12000),
+(205, 'Headphones', 2500),
+(206, 'Webcam', 3500),
+(207, 'Mobile', 30000);
+
+INSERT INTO ORDER_ITEMS(ORDER_ID,PRODUCT_ID,OUANTITY)VALUE 
+(101, 201, 1),
+(101, 202, 2),
+(102, 204, 1),
+(102, 203, 2),
+(103, 205, 3),
+(104, 201, 1),
+(104, 206, 2),
+(105, 207, 1),
+(106, 204, 2),
+(106, 205, 2),
+(107, 207, 1),
+(109, 203, 4),
+(110, 206, 2),
+(111, 205, 5);
+
+INSERT INTO CUSTOMBERS(ID, NAME, CITY)
+VALUES (6, 'ROHIT', 'DELHI');
+
+SELECT * FROM CUSTOMBERS;
+SELECT * FROM ORDERS;
+SELECT * FROM PRODUCTS;
+SELECT * FROM ORDER_ITEMS;
+
+#---------------------------------------------------------------------------------------
+#7.1 Total orders per customer
+SELECT C.NAME,COUNT(O.ORDER_ID) AS TOTAL_ORDER FROM CUSTOMBERS AS C
+JOIN ORDERS AS O
+ON C.ID=O.ID
+GROUP BY C.NAME;
+
+#---------------------------------------------------------------------------------------
+#7.2 Customers who never placed an order
+SELECT C.ID, C.NAME, C.CITY
+FROM CUSTOMBERS AS C
+LEFT JOIN ORDERS AS O
+ON C.ID = O.ID
+WHERE O.ORDER_ID IS NULL;
+#---------------------------------------------------------------------------------------
+#7.3 Highest selling product
+SELECT P.PRODUCT_NAME,SUM(I.OUANTITY) AS TOTAL_SELLING
+ FROM PRODUCTS AS P
+JOIN ORDER_ITEMS AS I
+ON P.PRODUCT_ID = I.PRODUCT_ID
+GROUP BY P.PRODUCT_ID ,P.PRODUCT_NAME
+ORDER BY TOTAL_SELLING DESC
+LIMIT 1;
+
+#------------------------- --------------------------------------------------------------
+#7.4 Monthly sales report
+SELECT MONTH(ORDER_DATE) AS MONTH,
+SUM(AMOUNT) AS MONTHLY_SALES 
+FROM ORDERS
+GROUP BY MONTH(ORDER_DATE);
+
+#---------------------------------------------------------------------------------------
+#7.5 Customers with total purchase > ₹50,000
+SELECT ID,SUM(AMOUNT) AS TOTAL_PURCHASE FROM ORDERS
+GROUP BY ID
+HAVING SUM(AMOUNT)>50000;
+
+#---------------------------------------------------------------------------------------
+#7.6 Top 3 cities by revenue
+SELECT C.CITY,SUM(O.AMOUNT) AS REVENUE FROM CUSTOMBERS AS C
+JOIN ORDERS AS O
+ON C.ID=O.ID
+GROUP BY C.CITY
+ORDER BY REVENUE DESC
+LIMIT 3;
+

@@ -1,0 +1,13 @@
+<h1>Book List</h1>
+
+{% for b in books %}
+    <p>--------------------</p>
+    <p>Title  : {{ b.title }}</p>
+    <p>Author : {{ b.name }}</p>
+    <p>Price  : {{ b.price }}</p>
+    
+{% empty %}
+
+    <p>No books found.</p>
+
+{% endfor %}

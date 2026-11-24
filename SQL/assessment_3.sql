@@ -39,13 +39,14 @@ WHERE EMP_ID=2;
 
 DROP TABLE IF EXISTS DEPARTMENTS_BACKUP;
 DROP TABLE IF EXISTS DEPARTMENTS_NEW;
+DROP TABLE IF EXISTS CUSTOMBER;
 
 SELECT * FROM DEPARTMENTS;
 select* FROM EMPLOYEES;
 
 #---------------------------------------------------------------------------------------
 #3.1 Display employee name with department name
-
+ 
 SELECT E.EMP_NAME,D.DEPT_NAME FROM EMPLOYEES E
 INNER JOIN DEPARTMENTS D ON E.DEPT_ID=D.DEPT_ID;
 

@@ -1,0 +1,30 @@
+<h1>student report </h1>
+<h4>student age 18 or greater</h4>
+{%for stu in students %}
+      <p>name :{{stu.name}}</p>
+      <p>age : {{stu.age}}</p>
+{% empty %}
+       <p>no student found</p>      
+
+{%endfor%}      
+
+<h1>student report </h1>
+<h4>student age 18 or lessthen 26</h4>
+{%for z in a %}
+      <p>name : {{z.name}}</p>
+      <p>age  : {{z.age}}</p>
+{% empty %}
+       <p>no student found</p>      
+
+{%endfor%}   
+
+<h1>student report </h1>
+<h4>student age 18 and lessthen 26</h4>
+{%for x in b %}
+      <p>name : {{x.name}}</p>
+      <p>age  : {{x.age}}</p>
+{% empty %}
+       <p>no student found</p>      
+
+{%endfor%}   
+

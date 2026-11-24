@@ -40,3 +40,4 @@ SELECT * FROM STUDENT ORDER BY MARK DESC;
 #---------------------------------------------------------------------------------------
 #1.6 Display _top 3 scorers
 SELECT * FROM STUDENT ORDER BY MARK DESC LIMIT 3;
+

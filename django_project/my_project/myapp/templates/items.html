@@ -1,0 +1,27 @@
+<html>
+<head>
+     <title>item list</title>
+</head>
+<body>
+     <h1>available  list </h1>
+
+     {%for item in items%}
+        <h3>{{item.name}}</h3>
+        <p>price:₹{{item.price}}</p>
+        
+        {%if item.available %}  
+             <p style="color: green;">available</p>
+            
+        {%else%}
+             <p style="color: red;">out of stock</p>     
+        {%endif%}     
+        <hr>
+     {%empty%}  
+         <p>item not found</p>
+     {%endfor%}       
+
+
+</body>
+
+
+</html>

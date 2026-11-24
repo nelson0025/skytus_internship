@@ -1,0 +1,13 @@
+
+{% extends 'base.html' %}
+{%load custom_filters%}
+
+{% block title %}
+home Page
+{% endblock %}
+
+{% block content %}
+    <h2>home page</h2>
+    <h1>{{name|add_hello}}</h1>
+    <p>This is our home page.</p>
+{% endblock %}

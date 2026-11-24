@@ -27,7 +27,7 @@ CREATE TABLE CUSTOMBER (
 CREATE TABLE ORDERS (
     ORDER_ID INT PRIMARY KEY,
     USER_ID INT,
-    FOREIGN KEY (USER_ID) REFERENCES CUSTOMBER(USER_ID)         
+    FOREIGN KEY (USER_ID) REFERENCES CUSTOMBER(USER_ID);    
 
 #---------------------------------------------------------------------------------------
 #5.5 Create index on email column

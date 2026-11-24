@@ -307,6 +307,8 @@ p1.set_price(new_price)
 print("New Price   : ", p1.get_price())    
 
 
+
+
 # -------------------------------------------------------------------------------------------------------
 # 10.8 - Create a Teacher and Student class to show inheritance.
 
